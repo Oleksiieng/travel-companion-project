@@ -1,12 +1,13 @@
 .body {
-  background: linear-gradient(90deg, #56c1de 0%, #45d2bf 100%);
+  background: linear-gradient(90deg, #5eb0e2 0%, #e3f7f4 100%);
   background-size: 100%;
   background-position: center;
   color: white;
 }
 
 .header-section {
-  min-height: 200px;
+  min-height: 100px;
+  margin-bottom: 100px;
 }
 
 .main-header-text {
@@ -15,10 +16,12 @@
   letter-spacing: 0.15px;
 }
 
-/* .img-fluid{} */
+.search-form {
+  border: #fff;
+}
 
 .header-img{
-  max-height: 200px;
+  max-height: 100px;
 }
 
 .hide {
@@ -27,7 +30,6 @@
 
 
 #form-heading {
-  background: #fff;
   padding: 15px 0;
 }
 
@@ -47,4 +49,12 @@
 .hide {
   display: none;
 }
+
+.container-fluid {
+  align-items: center;
+}
+
+/* .hr {
+
+} */
 

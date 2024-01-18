@@ -17,8 +17,8 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     max-height: 200px;
     overflow-y: auto;
-    background-color: white;
     width: 100%;
+    color: #000;
 }
 
 #suggestions li {

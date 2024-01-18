@@ -25,7 +25,7 @@
                       <a class="nav-link" href="#">About</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">GitHub</a>
+                      <a class="nav-link" href="https://github.com/Oleksiieng/travel-companion-project">GitHub</a>
                   </li>
               </ul>
           </div>
@@ -37,7 +37,7 @@
     <div class="row h-100 align-items-center">
         <div class="col-8">
           <h1 class="main-header-text">Travel Companion</h1>
-          <p class="small-header-text">This is the smaller text that goes under the main text.</p>
+          <p class="small-header-text">designed to help travelers in planning their trips and provide users with information about the weather, tourist attractions and recommendations in the chosen city.</p>
         </div>
         <div class="col-4">
             <img src="assets/img/travel.svg" class="img-fluid header-img" >
@@ -46,23 +46,23 @@
 </div>
 
   <!-- max-width for ultra wide resolutions -->
-  <div class="container-fluid" style="max-width: 1400px">
+  <div class="container-fluid justify-content-center" style="max-width: 1300px">
     <div class="row">
-      <aside class="col-lg-3 pb-3">
+      <aside class="col-lg-3 pb-3" style="max-width: 350px">
         <h2 id="form-heading" class="mt-1 h3 form-label">
           Search for a City:
         </h2>
         <form id="search-form" class="form">
           <div class="form-inline form-group">
             <div class="input-group">
-              <input class="form-input form-control weather-search rounded autocomplete w-100" type="text" id="search-input" placeholder="Enter location"
+              <input class="form-input form-control weather-search rounded autocomplete " type="text" id="search-input" placeholder="Enter location"
                 aria-labelledby="form-heading" aria-controls="today forecast" />
                 <ul id="suggestions" style="display: none;"></ul>
                 <div class="input-group-append mt-3">
                 <button type="submit" class="btn search-button btn-primary" id="search-button" aria-label="submit search">
                   Search
                 </button>
-                <hr class="hr weather-hr" />
+                <!-- <hr class="hr weather-hr"/> -->
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
         <div class="list-group" id="history"></div>
       </aside>
 
-      <div class="col-lg-9 pb-3">
+      <!-- <div class="col-lg-9 pb-3">
         <section id="today" class="mt-3 hide" role="region" aria-live="polite">
           <div class="card">
             <div class="card-body">
@@ -80,7 +80,7 @@
               <p id="wind"></p>
               <p id="humidity"></p>
             </div>
-          </div>
+          </div> -->
 
         </section>
         <section id="sightseen" class="row mt-3" role="region" aria-live="polite"></section>
