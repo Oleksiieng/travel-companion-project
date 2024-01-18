@@ -11,10 +11,39 @@
   <title>Travel Companion</title>
 </head>
 
-<body>
-  <header class="container-fluid text-center text-white bg-dark p-2 weather-header">
-    <h1>Travel Companion</h1>
+<body class="body">
+  <header class="container-fluid text-center text-white p-2 header-section">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav  d-flex flex-fill">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">GitHub</a>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+  </div>
   </header>
+
+  <div class="container h-50 header-section">
+    <div class="row h-100 align-items-center">
+        <div class="col-8">
+          <h1 class="main-header-text">Travel Companion</h1>
+          <p class="small-header-text">This is the smaller text that goes under the main text.</p>
+        </div>
+        <div class="col-4">
+            <img src="assets/img/travel.svg" class="img-fluid header-img" >
+        </div>
+    </div>
+</div>
 
   <!-- max-width for ultra wide resolutions -->
   <div class="container-fluid" style="max-width: 1400px">
@@ -26,7 +55,7 @@
         <form id="search-form" class="form">
           <div class="form-inline form-group">
             <div class="input-group">
-              <input class="form-input form-control weather-search rounded autocomplete" type="text" id="search-input" placeholder="Enter location"
+              <input class="form-input form-control weather-search rounded autocomplete w-100" type="text" id="search-input" placeholder="Enter location"
                 aria-labelledby="form-heading" aria-controls="today forecast" />
                 <ul id="suggestions" style="display: none;"></ul>
                 <div class="input-group-append mt-3">

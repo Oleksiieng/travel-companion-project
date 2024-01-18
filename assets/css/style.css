@@ -1,11 +1,30 @@
+.body {
+  background: linear-gradient(90deg, #56c1de 0%, #45d2bf 100%);
+  background-size: 100%;
+  background-position: center;
+  color: white;
+}
+
+.header-section {
+  min-height: 200px;
+}
+
+.main-header-text {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 0.15px;
+}
+
+/* .img-fluid{} */
+
+.header-img{
+  max-height: 200px;
+}
+
 .hide {
   display: none;
 }
 
-.weather-header {
-  background: rgb(52, 97, 186);
-  background: linear-gradient(90deg, rgba(52, 97, 186, 1) 0%, rgba(43, 57, 135, 1) 45%, rgba(32, 11, 77, 1) 100%);
-}
 
 #form-heading {
   background: #fff;
@@ -28,3 +47,4 @@
 .hide {
   display: none;
 }
+
