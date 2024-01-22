@@ -1,68 +1,88 @@
-
 (function () {
     const apiKey = 'addd5a1a8efb42c9ad97ecfd8f615f6c';
+    let selectedPlaceId = null;
+    let jsonData = [];
 
     document.getElementById('search-form').addEventListener('submit', function (event) {
         event.preventDefault();
-
-        const cityName = document.getElementById('search-input').value;
         const isHotelChecked = document.getElementById('option-hotel').checked;
         const isRestaurantChecked = document.getElementById('option-restaurant').checked;
 
-        getCityCoordinates(cityName)
-            .then(coordinates => {
-                if (coordinates) {
-                    const categories = [];
-                    if (isHotelChecked) categories.push('accommodation.hotel');
-                    if (isRestaurantChecked) categories.push('catering.restaurant');
+        if (!selectedPlaceId) {
+            alert('Please select a location from the list');
+            return;
+        }
 
-                    getPlaceDetails(coordinates.lat, coordinates.lon, categories.join(','))
-                        .then(places => {
-                            console.log(places);
-                        });
-                } else {
-                    console.error('City not found');
-                }
+        const categories = [];
+        if (isHotelChecked) categories.push('accommodation.hotel');
+        if (isRestaurantChecked) categories.push('catering.restaurant');
+
+        getPlaceDetails(selectedPlaceId, categories.join(','))
+            .then(places => {
+
+                console.log(places);
+                createBootstrapTable(places);
             });
     });
 
+    document.getElementById('search-input').addEventListener('input', function () {
+        const value = this.value;
+        const suggestions = document.getElementById('suggestions');
 
-    function getPlaceDetails(lat, lon, categories) {
-        return fetch(`https://api.geoapify.com/v2/place-details?lat=${lat}&lon=${lon}&categories=${categories}&apiKey=${apiKey}`)
+        if (value.length < 3) {
+            suggestions.style.display = 'none';
+            return;
+        }
+
+        fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(value)}&apiKey=${apiKey}`)
             .then(response => response.json())
             .then(data => {
-                console.log('===============')
-                console.log(data);
-                return data.results;
-            });
-    }
-
-
-    function getCityCoordinates(cityName) {
-        
-        const geocodeUrl = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(cityName)}&format=json&apiKey=${apiKey}`;
-
-        return fetch(geocodeUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.results && data.results.length > 0) {
-                    
-                    return {
-                        lat: data.results[0].lat,
-                        lon: data.results[0].lon
+                suggestions.innerHTML = '';
+                data.features.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item.properties.formatted;
+                    li.onclick = function () {
+                        document.getElementById('search-input').value = item.properties.formatted;
+                        selectedPlaceId = item.properties.place_id;
+                        suggestions.style.display = 'none';
                     };
-                } else {
-                    return null;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                return null;
+                    suggestions.appendChild(li);
+                });
+                suggestions.style.display = 'block';
             });
+    });
+
+    function getPlaceDetails(placeId, categories) {
+        return fetch(`https://api.geoapify.com/v2/places?categories=${categories}&filter=place:${placeId}&limit=20&apiKey=${apiKey}`)
+            .then(response => response.json())
+            .then(data => data.results);
     }
+
+    function createBootstrapTable(jsonData) {
+        // Assuming jsonData is your JSON data
+        let data = jsonData.features;
+    
+        // Start with an empty string for HTML content
+        let tableContent = '';
+    
+        // Create the table headers
+        tableContent += '<table class="table">';
+        tableContent += '<thead><tr><th>Name</th><th>Address</th><th>Categories</th></tr></thead>';
+        tableContent += '<tbody>';
+    
+        // Loop through each item in the JSON data
+        data.forEach(item => {
+            tableContent += '<tr>';
+            tableContent += `<td>${item.properties.name}</td>`;
+            tableContent += `<td>${item.properties.formatted}</td>`;
+            tableContent += `<td>${item.properties.categories.join(', ')}</td>`;
+            tableContent += '</tr>';
+        });
+    
+        // Close the table tags
+        tableContent += '</tbody></table>';
+    
+        document.getElementById('results-table').innerHTML = tableContent;
+    }
+
 })();
