@@ -154,7 +154,7 @@ function createBootstrapCards(data) {
     data.forEach((item, index) => {
         cardContent += `
             <div class="col-md-4">
-                <div class="card">
+                <div class="card card-style">
                     <div class="card-body">
                         <h5 class="card-title">${item.name}</h5>
                         <p class="card-text">${item.address}</p>
@@ -168,10 +168,6 @@ function createBootstrapCards(data) {
 
     document.getElementById('results-cards').innerHTML = cardContent;
 }
-
-
-
-
 
 
 document.getElementById('search-form').addEventListener('submit', handleFormSubmit);
