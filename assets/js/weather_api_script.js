@@ -1,3 +1,5 @@
+ //# Code fetched from weather api ninja
+
 const url = "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=London";
 const options = {
 method: "GET",
@@ -7,9 +9,13 @@ headers: {
 "X-RapidAPI-Host": "weather-by-api-ninjas.p.rapidapi.com"
 }
 };
+
+//# Function for searching the city
+
 const getWeather=(city)=>{
     cityName.innerHTML=city;
 
+// # url will set to dynamic city 
 
 fetch("https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city="+city, options)
 .then(response => response.json())
@@ -38,5 +44,7 @@ submit.addEventListener("click",(e)=>{
     e.preventDefault();
     getWeather(city.value);
 })
+
+//# Default location is set to london
 
 getWeather("London");
