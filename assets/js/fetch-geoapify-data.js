@@ -53,6 +53,7 @@
     
 
     function createBootstrapTable(data) {
+        console.log(data);
         let tableContent = '<table class="table"><thead><tr><th>Name</th><th>Address</th><th>Categories</th></tr></thead><tbody>';
     
         data.forEach(item => {
