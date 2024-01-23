@@ -1,0 +1,60 @@
+.body {
+  background: linear-gradient(90deg, #5eb0e2 0%, #e3f7f4 100%);
+  background-size: 100%;
+  background-position: center;
+  color: white;
+}
+
+.header-section {
+  min-height: 100px;
+  margin-bottom: 100px;
+}
+
+.main-header-text {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 0.15px;
+}
+
+.search-form {
+  border: #fff;
+}
+
+.header-img{
+  max-height: 100px;
+}
+
+.hide {
+  display: none;
+}
+
+
+#form-heading {
+  padding: 15px 0;
+}
+
+.input-group-append {
+  width: 100%;
+}
+
+.search-button {
+  width: 100%;
+}
+
+#forecast h3 {
+  background: #fff;
+}
+
+
+.hide {
+  display: none;
+}
+
+.container-fluid {
+  align-items: center;
+}
+
+/* .hr {
+
+} */
+
