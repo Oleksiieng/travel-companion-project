@@ -1,4 +1,5 @@
-const apiKey = 'addd5a1a8efb42c9ad97ecfd8f615f6c';
+(function () {
+    const apiKey = 'addd5a1a8efb42c9ad97ecfd8f615f6c';
 const map = L.map('map').setView([1, 1], 2);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -24,3 +25,4 @@ document.getElementById('search-form').addEventListener('submit', function (even
             console.error('Error fetching location coordinates:', error);
         });
 });
+})();
