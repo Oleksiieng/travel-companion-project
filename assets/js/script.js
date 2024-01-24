@@ -187,19 +187,6 @@ function getPlaceDetails(placeId, categories) {
 }
 
 
-// function createBootstrapTable(data) {
-//     let tableContent = '<table class="table"><thead><tr><th>Name</th><th>Address</th><th>Actions</th></tr></thead><tbody>';
-
-//     data.forEach((item, index) => {
-//         tableContent += `<tr><td>${item.name}</td><td>${item.address}</td><td><a href="#" onclick="showOnMap(${index})">Show on Map</a></td></tr>`;
-//     });
-
-//     tableContent += '</tbody></table>';
-
-//     document.getElementById('results-table').innerHTML = tableContent;
-// }
-
-
 function createBootstrapCards(data) {
     let cardContent = '<div class="row">';
 
