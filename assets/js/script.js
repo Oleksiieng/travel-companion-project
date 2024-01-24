@@ -3,6 +3,56 @@ const map = L.map('map').setView([1, 1], 2);
 let input = document.getElementById('search-input');
 let jsonData = [];
 
+
+// Weather_api section
+const weatherApiKey = "763c810bdfmshb9f4669b80c3925p18d818jsn3db5be365864";
+const weatherOptions = {
+    method: "GET",
+    headers: {
+        "content-type": "application/octet-stream",
+        "X-RapidAPI-Key": weatherApiKey, // Use the new variable name
+        "X-RapidAPI-Host": "weather-by-api-ninjas.p.rapidapi.com"
+    }
+};
+
+const getWeather = (city) => {
+    cityName.innerHTML=city;
+
+    // # url will set to dynamic city 
+
+    fetch(`https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${encodeURIComponent(city)}`, weatherOptions)
+    .then(response => response.json())
+    .then(response => {
+        console.log(response)
+        // var d = 1234567890000)
+
+        cloud_pct.innerHTML = response.cloud_pct
+        temp.innerHTML = response.temp
+        temp2.innerHTML = response.temp
+        feels_like.innerHTML = response.feels_like
+        humidity.innerHTML = response.humidity
+        humidity2.innerHTML = response.humidity
+        min_temp.innerHTML = response.min_temp
+        max_temp.innerHTML = response.max_temp
+        wind_speed.innerHTML = response.wind_speed
+        wind_speed2.innerHTML = response.wind_speed
+        wind_degrees.innerHTML = response.wind_degrees
+        sunrise.innerHTML = new Date(response.sunrise).toLocaleTimeString();
+        sunset.innerHTML = new Date(response.sunset).toLocaleTimeString();
+    })
+    .catch(err => console.error(err));
+}
+
+// merged into a single form, extra search box removed.
+// submit.addEventListener("click",(e)=>{
+//     e.preventDefault();
+//     getWeather(city.value);
+// })
+
+// Initial call to display default weather
+getWeather("London");
+
+
 // autocomlete
 input.addEventListener('input', function () {
     const value = this.value;
@@ -37,6 +87,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 document.getElementById('search-form').addEventListener('submit', function (event) {
     event.preventDefault();
     const searchInput = document.getElementById('search-input').value;
+    // getting the weather details
+    getWeather(searchInput);
 
     fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(searchInput)}&apiKey=${apiKey}`)
         .then(response => response.json())
@@ -146,10 +198,6 @@ function createBootstrapTable(data) {
 
     document.getElementById('results-table').innerHTML = tableContent;
 }
-
-
-
-
 
 
 document.getElementById('search-form').addEventListener('submit', handleFormSubmit);
