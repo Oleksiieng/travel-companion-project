@@ -137,7 +137,7 @@ function handleFormSubmit(event) {
 
     getPlaceDetails(selectedPlaceId, categories.join(',')).then(places => {
         jsonData = places;
-        createBootstrapTable(places);
+        createBootstrapCards(places);
     });
 }
 
@@ -187,16 +187,38 @@ function getPlaceDetails(placeId, categories) {
 }
 
 
-function createBootstrapTable(data) {
-    let tableContent = '<table class="table"><thead><tr><th>Name</th><th>Address</th><th>Actions</th></tr></thead><tbody>';
+// function createBootstrapTable(data) {
+//     let tableContent = '<table class="table"><thead><tr><th>Name</th><th>Address</th><th>Actions</th></tr></thead><tbody>';
+
+//     data.forEach((item, index) => {
+//         tableContent += `<tr><td>${item.name}</td><td>${item.address}</td><td><a href="#" onclick="showOnMap(${index})">Show on Map</a></td></tr>`;
+//     });
+
+//     tableContent += '</tbody></table>';
+
+//     document.getElementById('results-table').innerHTML = tableContent;
+// }
+
+
+function createBootstrapCards(data) {
+    let cardContent = '<div class="row">';
 
     data.forEach((item, index) => {
-        tableContent += `<tr><td>${item.name}</td><td>${item.address}</td><td><a href="#" onclick="showOnMap(${index})">Show on Map</a></td></tr>`;
+        cardContent += `
+            <div class="col-md-4">
+                <div class="card card-style">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.name}</h5>
+                        <p class="card-text">${item.address}</p>
+                        <a href="#" class="btn btn-primary" onclick="showOnMap(${index})">Show on Map</a>
+                    </div>
+                </div>
+            </div>`;
     });
 
-    tableContent += '</tbody></table>';
+    cardContent += '</div>';
 
-    document.getElementById('results-table').innerHTML = tableContent;
+    document.getElementById('results-cards').innerHTML = cardContent;
 }
 
 
