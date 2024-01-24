@@ -1,5 +1,4 @@
 # travel-companion-project
-
 # Group project build by Oleksii Kulykov,  Olga Avramenko, Junu Shrestha, Aftab Ahmad
 
 ## Description
