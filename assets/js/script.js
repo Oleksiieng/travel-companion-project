@@ -215,7 +215,13 @@ function createBootstrapCards(data) {
 
 
 function getWikiDescription(cityName){
-    fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&titles=${encodeURIComponent(cityName)}`)
+    
+    const proxyUrl = 'https://corsproxy.io/?';
+
+    const wikipediaApiUrl = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&titles=${encodeURIComponent(cityName)}`;
+
+    const urlWithProxy = proxyUrl + encodeURIComponent(wikipediaApiUrl);
+    fetch(urlWithProxy)
         .then(response => response.json())
         .then(result => {
             var page = Object.values(result.query.pages)[0];
