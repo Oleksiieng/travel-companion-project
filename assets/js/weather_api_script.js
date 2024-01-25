@@ -12,6 +12,8 @@ headers: {
 
 //# Function for searching the city
 
+
+
 const getWeather=(city)=>{
     cityName.innerHTML=city;
 
@@ -48,3 +50,14 @@ submit.addEventListener("click",(e)=>{
 //# Default location is set to london
 
 getWeather("London");
+
+$(document).ready(function() {
+    // Set initial display style for weather-info-box
+    $(".weather-info-box").css("display", "none");
+
+    // Add click event to the submit button
+    $("#submit-button").click(function() {
+        // Toggle the visibility of the weather info box on click
+        $(".weather-info-box").toggle();
+    });
+});
