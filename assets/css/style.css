@@ -95,8 +95,15 @@
 .winde {
   background-image: url("../img/winde.png");
   background-size: 100%;
+  background-size: 100%;
 }
 
 .search-form__style {
   margin-right: 50px;
 }
+
+.weather-info-box, .wiki {
+  display: none;
+}
+
+
