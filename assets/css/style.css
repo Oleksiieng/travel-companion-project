@@ -67,8 +67,9 @@
   top: 0;
   right: 0;
   margin: 20px; 
-  margin-top: 150px;
-  margin-right: 50px;
+  margin-top: 5px;
+  margin-right: 70px;
+  margin-bottom: 5px;
   background-color: #f0f0f0;
   padding: 10px;
   border: 1px solid #ccc;
@@ -79,3 +80,18 @@
   margin-left: 50px;
 }
 
+.card-text-aside {
+  color: #170241;
+}
+
+.tempe {
+  background-image: url("../img/sunny.png");
+}
+
+.humide {
+  background-image: url("../img/humidity.jpeg");
+}
+
+.winde {
+  background-image: url("../img/winde.png");
+}
