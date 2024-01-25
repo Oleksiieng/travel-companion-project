@@ -38,6 +38,11 @@ document.getElementById('search-form').addEventListener('submit', function (even
     event.preventDefault();
     const searchInput = document.getElementById('search-input').value;
 
+    //change value
+    getWikiImage('London');
+    getWikiDescription('London');
+
+
     fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(searchInput)}&apiKey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
@@ -135,19 +140,6 @@ function getPlaceDetails(placeId, categories) {
 }
 
 
-// function createBootstrapTable(data) {
-//     let tableContent = '<table class="table"><thead><tr><th>Name</th><th>Address</th><th>Actions</th></tr></thead><tbody>';
-
-//     data.forEach((item, index) => {
-//         tableContent += `<tr><td>${item.name}</td><td>${item.address}</td><td><a href="#" onclick="showOnMap(${index})">Show on Map</a></td></tr>`;
-//     });
-
-//     tableContent += '</tbody></table>';
-
-//     document.getElementById('results-table').innerHTML = tableContent;
-// }
-
-
 function createBootstrapCards(data) {
     let cardContent = '<div class="row">';
 
@@ -170,5 +162,78 @@ function createBootstrapCards(data) {
 }
 
 
+function getWikiDescription(cityName){
+    var requestOptions = {
+        method: 'GET',
+      };
+      
+      fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&titles=${cityName}`, requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
+
+// images https://www.mediawiki.org/wiki/API:Images#JavaScript
+function getWikiImage(title) {
+    var url = "https://en.wikipedia.org/w/api.php";
+
+    var params = {
+        action: "query",
+        prop: "images",
+        titles: title,
+        format: "json"
+    };
+
+    url = url + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+    fetch(url)
+        .then(function (response) { return response.json(); })
+        .then(function (response) {
+            var pages = response.query.pages;
+            for (var page in pages) {
+                for (var img of pages[page].images) {
+                    console.log(img.title);
+                    getImage(img.title);
+                }
+            }
+        })
+        .catch(function (error) { console.log(error); });
+}
+
+function getImage(img) {
+    var url = "https://en.wikipedia.org/w/api.php";
+    var params = {
+        action: "query",
+        prop: "imageinfo",
+        titles: img, 
+        iiprop: "url",
+        format: "json"
+    };
+
+    url = url + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+    fetch(url)
+        .then(function (response) { return response.json(); })
+        .then(function (response) {
+            var pages = response.query.pages;
+            for (var page in pages) {
+                if (pages[page].imageinfo) {
+                    var imageUrl = pages[page].imageinfo[0].url;
+                    console.log(imageUrl);
+            
+                    var img = document.createElement('img');
+                    img.src = imageUrl;
+                    document.body.appendChild(img); // :TODO change for id wiki
+                }
+            }
+        })
+        .catch(function (error) { console.log(error); });
+}
+
+
+
 document.getElementById('search-form').addEventListener('submit', handleFormSubmit);
 document.getElementById('search-input').addEventListener('input', handleInput);
+
