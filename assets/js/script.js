@@ -39,19 +39,10 @@ const getWeather = (city) => {
         wind_degrees.innerHTML = response.wind_degrees
         sunrise.innerHTML = new Date(response.sunrise).toLocaleTimeString();
         sunset.innerHTML = new Date(response.sunset).toLocaleTimeString();
+        document.querySelector('.weather-info-box').style.display = 'block';
     })
     .catch(err => console.error(err));
 }
-
-// merged into a single form, extra search box removed.
-// submit.addEventListener("click",(e)=>{
-//     e.preventDefault();
-//     getWeather(city.value);
-// })
-
-// Initial call to display default weather
-getWeather("London");
-
 
 // autocomlete
 input.addEventListener('input', function () {
@@ -133,6 +124,7 @@ let selectedPlaceId = null;
 
 function handleFormSubmit(event) {
     event.preventDefault();
+    hideInfoBlocks(); 
     const isHotelChecked = document.getElementById('option-hotel').checked;
     const isRestaurantChecked = document.getElementById('option-restaurant').checked;
 
@@ -227,6 +219,7 @@ function getWikiDescription(cityName){
             var page = Object.values(result.query.pages)[0];
             var infoDiv = document.getElementById('wiki-content');
             infoDiv.textContent = page.extract;
+            document.querySelector('.wiki').style.display = 'block';
         })
         .catch(error => console.log('error', error));
 }
@@ -310,6 +303,12 @@ function getImage(img) {
         .catch(function (error) { console.log(error); });
 }
 
+
+function hideInfoBlocks() {
+    document.querySelector('.weather-info-box').style.display = 'none';
+    document.querySelector('.wiki').style.display = 'none';
+    document.getElementById('wiki-content').textContent = '';
+}
 
 
 

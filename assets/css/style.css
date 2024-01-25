@@ -95,3 +95,9 @@
 .winde {
   background-image: url("../img/winde.png");
 }
+
+.weather-info-box, .wiki {
+  display: none;
+}
+
+
