@@ -90,6 +90,11 @@ document.getElementById('search-form').addEventListener('submit', function (even
     // getting the weather details
     getWeather(searchInput);
 
+    //change value
+    getWikiImage('London');
+    getWikiDescription('London');
+
+
     fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(searchInput)}&apiKey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
@@ -209,5 +214,99 @@ function createBootstrapCards(data) {
 }
 
 
+function getWikiDescription(cityName){
+    fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&titles=${encodeURIComponent(cityName)}`)
+        .then(response => response.json())
+        .then(result => {
+            var page = Object.values(result.query.pages)[0];
+            var infoDiv = document.getElementById('wiki-content');
+            infoDiv.textContent = page.extract;
+        })
+        .catch(error => console.log('error', error));
+}
+
+// images https://www.mediawiki.org/wiki/API:Images#JavaScript
+function getWikiImage(title) {
+    var url = "https://en.wikipedia.org/w/api.php";
+
+    var params = {
+        action: "query",
+        prop: "images",
+        titles: title,
+        format: "json"
+    };
+
+    url = url + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+    fetch(url)
+        .then(function (response) { return response.json(); })
+        .then(function (response) {
+            var pages = response.query.pages;
+            for (var page in pages) {
+                for (var img of pages[page].images) {
+                    console.log(img.title);
+                    getImage(img.title);
+                }
+            }
+        })
+        .catch(function (error) { console.log(error); });
+}
+
+function getImage(img) {
+    var url = "https://en.wikipedia.org/w/api.php";
+    var params = {
+        action: "query",
+        prop: "imageinfo",
+        titles: img, 
+        iiprop: "url",
+        format: "json"
+    };
+
+    url = url + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + encodeURIComponent(params[key]); });
+
+    fetch(url)
+        .then(function (response) { return response.json(); })
+        .then(function (response) {
+            var pages = response.query.pages;
+            var carouselInner = document.querySelector('#carouselExampleIndicators .carousel-inner');
+            var carouselIndicators = document.querySelector('#carouselExampleIndicators .carousel-indicators');
+
+            for (var page in pages) {
+                if (pages[page].imageinfo) {
+                    var imageUrl = pages[page].imageinfo[0].url;
+
+                    var carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    if (carouselInner.children.length === 0) {
+                        carouselItem.classList.add('active');
+                    }
+
+                    var img = document.createElement('img');
+                    img.className = 'd-block w-50';
+                    img.src = imageUrl;
+                    carouselItem.appendChild(img);
+
+                    carouselInner.appendChild(carouselItem);
+
+                    var indicator = document.createElement('li');
+                    indicator.setAttribute('data-target', '#carouselExampleIndicators');
+                    indicator.setAttribute('data-slide-to', carouselInner.children.length - 1);
+                    if (carouselInner.children.length === 1) {
+                        indicator.classList.add('active');
+                    }
+
+                    carouselIndicators.appendChild(indicator);
+                }
+            }
+        })
+        .catch(function (error) { console.log(error); });
+}
+
+
+
+
 document.getElementById('search-form').addEventListener('submit', handleFormSubmit);
 document.getElementById('search-input').addEventListener('input', handleInput);
+
