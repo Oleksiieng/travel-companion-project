@@ -305,9 +305,13 @@ function getImage(img) {
 
 
 function hideInfoBlocks() {
-    document.querySelector('.weather-info-box').style.display = 'none';
-    document.querySelector('.wiki').style.display = 'none';
-    document.getElementById('wiki-content').textContent = '';
+    const weatherInfoBox = document.querySelector('.weather-info-box');
+    const wikiBox = document.querySelector('.wiki');
+    const wikiContent = document.getElementById('wiki-content');
+
+    if (weatherInfoBox) weatherInfoBox.style.display = 'none';
+    if (wikiBox) wikiBox.style.display = 'none';
+    if (wikiContent) wikiContent.textContent = '';
 }
 
 

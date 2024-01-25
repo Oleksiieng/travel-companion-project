@@ -62,7 +62,7 @@
   <div class="container-fluid justify-content-center" style="max-width: 1300px">
 
     <div class="row">
-      <aside class="col-lg-3 pb-3" style="max-width: 350px">
+      <aside class="col-lg-3 pb-3 search-form__style" style="max-width: 350px">
         <h2 id="form-heading" class="mt-1 h3 form-label">
           Search for a City:
         </h2>
@@ -132,22 +132,21 @@
 
 
    <!-- Hidden at the beggining ??? -->
-  <aside class="weather-info-box rounded bg-transparent">
+   <aside class="weather-info-box rounded bg-transparent">
 
-      <div class="card">
-      <div class="card-header text-center">
+    <div class="card">
+      <div class="card-header text-center bg-primary text-white">
         <h4 class="card-title"><span id="cityName"></span></h4>
       </div>
 
-      <!-- # Temperature info -->
-      <div class="card rounded">
+      <!-- Temperature info -->
+      <div class="card rounded my-3">
         <div class="card-header text-center">
           Temperature
         </div>
         <div class="card-body text-center tempe card-text-aside">
           <h5 class="card-title pricing-card-title"><span id="temp2"></span><span>&#8451;</span><small
-              class="text-body-secondary fw-light"></small></h5>
-              <!-- <img src="assets/img/sunny.jpg" alt="Sunny Weather" class="weather-icon"> -->
+              class="text-muted fw-light"></small></h5>
           <ul class="list-unstyled mt-3 mb-4">
             <li>Temperature: <span id="temp"></span></li>
             <li>Minimum: <span id="min_temp"></span></li>
@@ -156,14 +155,14 @@
         </div>
       </div>
 
-      <!-- # Humidity info -->
-      <div class="card rounded">
+      <!-- Humidity info -->
+      <div class="card rounded my-3">
         <div class="card-header text-center">
           Humidity Info
         </div>
         <div class="card-body text-center humide card-text-aside">
           <h5 class="card-title pricing-card-title"><span id="humidity2"></span><span>&#8451;</span><small
-              class="text-body-secondary fw-light"></small></h5>
+              class="text-muted fw-light"></small></h5>
           <ul class="list-unstyled mt-3 mb-4">
             <li>Cloud PCT is <span id="cloud_pct"></span></li>
             <li>Feels like <span id="feels_like"></span></li>
@@ -172,14 +171,14 @@
         </div>
       </div>
 
-      <!-- # Wind info -->
-      <div class="card rounded">
+      <!-- Wind info -->
+      <div class="card rounded my-3">
         <div class="card-header text-center">
           Wind Info
         </div>
         <div class="card-body text-center winde card-text-aside">
           <h5 class="card-title pricing-card-title"><span id="wind_speed2"></span><span>&#8451;</span><small
-              class="text-body-secondary fw-light"></small></h5>
+              class="text-muted fw-light"></small></h5>
           <ul class="list-unstyled mt-3 mb-4">
             <li>Wind speed is <span id="wind_speed"></span></li>
             <li>Wind degree is <span id="wind_degrees"></span></li>
@@ -200,7 +199,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/weather_api_script.js"></script>
-</body>
+ </body>
 
 </html>
