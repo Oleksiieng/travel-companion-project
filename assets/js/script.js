@@ -189,7 +189,7 @@ function createBootstrapCards(data) {
 
     data.forEach((item, index) => {
         cardContent += `
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="card card-style">
                     <div class="card-body">
                         <h5 class="card-title">${item.name}</h5>
@@ -217,9 +217,10 @@ function getWikiDescription(cityName){
         .then(response => response.json())
         .then(result => {
             var page = Object.values(result.query.pages)[0];
-            var infoDiv = document.getElementById('wiki-content');
-            infoDiv.textContent = page.extract;
-            document.querySelector('.wiki').style.display = 'block';
+            var modalBody = document.querySelector('#wikiModal .modal-body');
+            modalBody.textContent = page.extract;
+
+            $('#wikiModal').modal('show');
         })
         .catch(error => console.log('error', error));
 }
@@ -283,7 +284,7 @@ function getImage(img) {
                     }
 
                     var img = document.createElement('img');
-                    img.className = 'd-block w-50';
+                    img.className = 'd-block w-100';
                     img.src = imageUrl;
                     carouselItem.appendChild(img);
 
@@ -306,16 +307,17 @@ function getImage(img) {
 
 function hideInfoBlocks() {
     const weatherInfoBox = document.querySelector('.weather-info-box');
-    const wikiBox = document.querySelector('.wiki');
-    const wikiContent = document.getElementById('wiki-content');
-
+  
     if (weatherInfoBox) weatherInfoBox.style.display = 'none';
-    if (wikiBox) wikiBox.style.display = 'none';
-    if (wikiContent) wikiContent.textContent = '';
 }
 
-
+function showWikiModal(){
+    $('#wikiModal').modal('show');
+}
 
 document.getElementById('search-form').addEventListener('submit', handleFormSubmit);
 document.getElementById('search-input').addEventListener('input', handleInput);
-
+document.getElementById('open-modal-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    showWikiModal();
+});
