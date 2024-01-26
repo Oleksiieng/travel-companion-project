@@ -85,9 +85,7 @@ document.getElementById('search-form').addEventListener('submit', function (even
         .then(response => response.json())
         .then(data => {
             if (data.features && data.features.length > 0) {
-             console.log('========')
-                console.log(data);
-             
+          
                 const coordinates = data.features[0].geometry.coordinates;
                 const marker = L.marker([coordinates[1], coordinates[0]]).addTo(map);
                 map.setView([coordinates[1], coordinates[0]], 15);
@@ -257,6 +255,7 @@ function getWikiImage(title) {
 
 
 function getImage(img) {
+    console.log('+++++++++++++++++++++++++++++++++++++++');
     var url = "https://en.wikipedia.org/w/api.php";
     var params = {
         action: "query",
@@ -275,18 +274,15 @@ function getImage(img) {
             var pages = response.query.pages;
             var carouselInner = document.querySelector('#wikiGalleryCarousel .carousel-inner');
             var carouselIndicators = document.querySelector('#wikiGalleryCarousel .carousel-indicators');
-          
+
             carouselInner.innerHTML = '';
             carouselIndicators.innerHTML = '';
 
-            for (var page in pages) {
+            Object.keys(pages).forEach((page, index) => {
                 if (pages[page].imageinfo) {
                     var imageUrl = pages[page].imageinfo[0].url;
                     var carouselItem = document.createElement('div');
-                    carouselItem.className = 'carousel-item';
-                    if (carouselInner.children.length === 0) {
-                        carouselItem.classList.add('active');
-                    }
+                    carouselItem.className = 'carousel-item' + (index === 0 ? ' active' : '');
 
                     var img = document.createElement('img');
                     img.className = 'd-block w-100';
@@ -296,15 +292,15 @@ function getImage(img) {
                     carouselInner.appendChild(carouselItem);
 
                     var indicator = document.createElement('li');
-                    indicator.setAttribute('data-target', '#galleryModal');
-                    indicator.setAttribute('data-slide-to', carouselInner.children.length - 1);
-                    if (carouselInner.children.length === 1) {
-                        indicator.classList.add('active');
+                    indicator.setAttribute('data-target', '#wikiGalleryCarousel');
+                    indicator.setAttribute('data-slide-to', index);
+                    if (index === 0) {
+                        indicator.className = 'active';
                     }
 
                     carouselIndicators.appendChild(indicator);
                 }
-            }
+            });
         })
         .catch(function (error) { console.log(error); });
 }
