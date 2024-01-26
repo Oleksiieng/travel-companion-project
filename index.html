@@ -71,7 +71,7 @@
 
             <div class="input-group">
               <input class="form-input form-control weather-search rounded autocomplete " type="text" id="search-input"
-                placeholder="Enter location" aria-labelledby="form-heading" aria-controls="today forecast" />
+                placeholder="Enter location" aria-labelledby="form-heading" aria-controls="today forecast" autocomplete="off" />
               <ul id="suggestions" style="display: none;"></ul>
               <div class="input-group-append mt-3">
                 <label>
@@ -94,35 +94,9 @@
       </aside>
 
       </section>
-
-      <!-- Wiki Section -->
-      <!-- Hidden at the beggining ??? -->
-      <div class="col-md-6 wikipedia">
-        <div class="wiki bg-white p-4 rounded">
-          <div class="wiki-body">
-            <h1 class="wiki-title text-center text-dark h6">Wikipedia Article</h1>
-            <div id="wiki-content" class="card-text text-center">some text here</div>
-            <div class="carousel">
-              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators"></ol>
-                <div class="carousel-inner"></div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Предыдущий</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Следующий</span>
-                </a>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
       <section id="sightseen" class="row mt-3" role="region" aria-live="polite"></section>
+      <a href="#" data-toggle="modal" data-target="#wikiModal">Information about the place from Wikipedia</a>
+
       <div id="results-cards">
       </div>
     </div>
@@ -190,6 +164,50 @@
 
     </div>
   </aside>
+
+
+  
+  <div class="modal fade" id="wikiModal" tabindex="-1" role="dialog" aria-labelledby="wikiModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="wikiModalLabel">Wikipedia Info</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Wiki Section -->
+          <!-- Hidden at the beggining ??? -->
+          <div class="col-md-6 wikipedia">
+            <div class="wiki bg-white p-4 rounded">
+              <div class="wiki-body">
+                <h1 class="wiki-title text-center text-dark h6">Wikipedia Article</h1>
+                <div id="wiki-content" class="card-text text-center">some text here</div>
+                <div class="carousel">
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators"></ol>
+                    <div class="carousel-inner"></div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Предыдущий</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Следующий</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Day.js -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
