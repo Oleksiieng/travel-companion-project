@@ -97,7 +97,7 @@
       </section>
       <section id="sightseen" class="row mt-3" role="region" aria-live="polite"></section>
       <a href="#" id="open-modal-link">Information about the place from Wikipedia</a>
-
+      <a href="#" id="open-gallery-modal">Open Gallery</a>
       <div id="results-cards">
       </div>
     </div>
@@ -171,38 +171,32 @@
           <h5 class="modal-title" id="wikiModalLabel">Wikipedia Info</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-  
+    
         <div class="modal-body">
-          <!-- Wiki Section -->
-          <div class="col-md-6 wikipedia">
-            <div class="wiki bg-white p-4 rounded">
-              <div class="wiki-body">
-                <h1 class="wiki-title text-center text-dark h6">Wikipedia Article</h1>
-                <div id="wiki-content" class="card-text text-center">some text here</div>
-                <div class="carousel">
-                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators"></ol>
-                    <div class="carousel-inner"></div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Предыдущий</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Следующий</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div id="wiki-content" class="card-text text-center">Some text here</div>
+          
+          <div id="wikiGalleryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#wikiGalleryCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#wikiGalleryCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
+  
         </div>
+  
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
+  
+
 
   <!-- Day.js -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>

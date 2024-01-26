@@ -81,18 +81,19 @@ document.getElementById('search-form').addEventListener('submit', function (even
     // getting the weather details
     getWeather(searchInput);
 
-    //change value
-    getWikiImage('London');
-    getWikiDescription('London');
-
-
     fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(searchInput)}&apiKey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             if (data.features && data.features.length > 0) {
+             console.log('========')
+                console.log(data);
+             
                 const coordinates = data.features[0].geometry.coordinates;
                 const marker = L.marker([coordinates[1], coordinates[0]]).addTo(map);
                 map.setView([coordinates[1], coordinates[0]], 15);
+                getWikiImage(data.features[0].properties.city);
+                getWikiDescription(data.features[0].properties.city);
+
             } else {
                 alert('Location not found');
             }
@@ -174,6 +175,7 @@ function getPlaceDetails(placeId, categories) {
             return data.features.map(feature => {
                 return {
                     name: feature.properties.name,
+                    city: feature.city,
                     address: feature.properties.formatted,
                     categories: feature.properties.categories,
                     lat: feature.geometry.coordinates[1],
@@ -244,14 +246,15 @@ function getWikiImage(title) {
         .then(function (response) {
             var pages = response.query.pages;
             for (var page in pages) {
-                for (var img of pages[page].images) {
-                    console.log(img.title);
+                var images = pages[page].images.slice(0, 3);
+                for (var img of images) {
                     getImage(img.title);
                 }
             }
         })
         .catch(function (error) { console.log(error); });
 }
+
 
 function getImage(img) {
     var url = "https://en.wikipedia.org/w/api.php";
@@ -270,13 +273,15 @@ function getImage(img) {
         .then(function (response) { return response.json(); })
         .then(function (response) {
             var pages = response.query.pages;
-            var carouselInner = document.querySelector('#carouselExampleIndicators .carousel-inner');
-            var carouselIndicators = document.querySelector('#carouselExampleIndicators .carousel-indicators');
+            var carouselInner = document.querySelector('#wikiGalleryCarousel .carousel-inner');
+            var carouselIndicators = document.querySelector('#wikiGalleryCarousel .carousel-indicators');
+          
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
 
             for (var page in pages) {
                 if (pages[page].imageinfo) {
                     var imageUrl = pages[page].imageinfo[0].url;
-
                     var carouselItem = document.createElement('div');
                     carouselItem.className = 'carousel-item';
                     if (carouselInner.children.length === 0) {
@@ -291,7 +296,7 @@ function getImage(img) {
                     carouselInner.appendChild(carouselItem);
 
                     var indicator = document.createElement('li');
-                    indicator.setAttribute('data-target', '#carouselExampleIndicators');
+                    indicator.setAttribute('data-target', '#galleryModal');
                     indicator.setAttribute('data-slide-to', carouselInner.children.length - 1);
                     if (carouselInner.children.length === 1) {
                         indicator.classList.add('active');
@@ -303,6 +308,8 @@ function getImage(img) {
         })
         .catch(function (error) { console.log(error); });
 }
+
+
 
 
 function hideInfoBlocks() {
@@ -320,4 +327,11 @@ document.getElementById('search-input').addEventListener('input', handleInput);
 document.getElementById('open-modal-link').addEventListener('click', function(event) {
     event.preventDefault();
     showWikiModal();
+});
+
+document.getElementById('open-gallery-modal').addEventListener('click', function(event) {
+    event.preventDefault();
+    const title = 'London'; 
+    getWikiImage(title);
+    $('#galleryModal').modal('show');
 });
