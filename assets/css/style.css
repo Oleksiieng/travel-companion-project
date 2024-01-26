@@ -7,7 +7,6 @@
 
 .header-section {
   min-height: 100px;
-  margin-bottom: 100px;
 }
 
 .main-header-text {
@@ -45,11 +44,6 @@
   background: #fff;
 }
 
-
-.hide {
-  display: none;
-}
-
 .container-fluid {
   align-items: center;
 }
@@ -72,10 +66,6 @@
   margin-bottom: 5px;
   background-color: #f0f0f0;
   padding: 10px;
-}
-
-.wikipedia {
-  align-self: center;
 }
 
 .card-text-aside {
@@ -106,4 +96,6 @@
   display: none;
 }
 
-
+.modal {
+  color: #170241;
+}
