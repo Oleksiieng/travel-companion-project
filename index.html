@@ -89,14 +89,23 @@
                 </button>
                 <!-- <hr class="hr weather-hr"/> -->
               </div>
+              
             </div>
         </form>
         <div class="list-group" id="history"></div>
+
       </aside>
 
       </section>
+
+      <div class="col-md-6 wikipedia">
+        <div class="wiki bg-transparent p-4 rounded">
+          <a href="#" id="open-modal-link">Information about the place from Wikipedia</a>
+        </div>
+      </div>
+
       <section id="sightseen" class="row mt-3" role="region" aria-live="polite"></section>
-      <a href="#" id="open-modal-link">Information about the place from Wikipedia</a>
+ 
 
       <div id="results-cards" style= "max-width: 1000px" >
       </div>
@@ -105,19 +114,19 @@
   </div>
   </div>
 
-  <aside class="weather-info-box rounded bg-transparent">
+  <aside class="weather-info-box rounded bg-transparent " style="max-width: 200px;">
 
-    <div class="card">
+    <div class="card card-weather rounded my-3">
       <div class="card-header text-center bg-primary text-white">
         <h4 class="card-title"><span id="cityName"></span></h4>
       </div>
 
       <!-- Temperature info -->
-      <div class="card rounded my-3">
+      <div class="card card card-weather rounded my-3">
         <div class="card-header text-center">
           Temperature
         </div>
-        <div class="card-body text-center tempe card-text-aside">
+        <div class="card-body card-body_weather text-center tempe card-text-aside">
           <h5 class="card-title pricing-card-title"><span id="temp2"></span><span>&#8451;</span><small
               class="text-muted fw-light"></small></h5>
           <ul class="list-unstyled mt-3 mb-4">
@@ -129,11 +138,11 @@
       </div>
 
       <!-- Humidity info -->
-      <div class="card rounded my-3">
+      <div class="card-weather rounded my-3">
         <div class="card-header text-center">
           Humidity Info
         </div>
-        <div class="card-body text-center humide card-text-aside">
+        <div class="card-body card-body_weather text-center humide card-text-aside">
           <h5 class="card-title pricing-card-title"><span id="humidity2"></span><span>&#8451;</span><small
               class="text-muted fw-light"></small></h5>
           <ul class="list-unstyled mt-3 mb-4">
@@ -145,11 +154,11 @@
       </div>
 
       <!-- Wind info -->
-      <div class="card rounded my-3">
+      <div class="card-weather rounded my-3">
         <div class="card-header text-center">
           Wind Info
         </div>
-        <div class="card-body text-center winde card-text-aside">
+        <div class="card-body card-body_weather text-center winde card-text-aside">
           <h5 class="card-title pricing-card-title"><span id="wind_speed2"></span><span>&#8451;</span><small
               class="text-muted fw-light"></small></h5>
           <ul class="list-unstyled mt-3 mb-4">
