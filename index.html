@@ -88,6 +88,8 @@
                   Search
                 </button>
                 <!-- <hr class="hr weather-hr"/> -->
+               
+              </div>
               </div>
               
             </div>
@@ -180,8 +182,22 @@
           <h5 class="modal-title" id="wikiModalLabel">Wikipedia Info</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-  
+    
         <div class="modal-body">
+          <div id="wiki-content" class="card-text text-center">Some text here</div>
+          
+          <div id="wikiGalleryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner"></div>
+            <ol class="carousel-indicators"></ol>
+          
+            <button class="carousel-control-prev" type="button" data-bs-target="#wikiGalleryCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#wikiGalleryCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           <!-- Wiki Section -->
           <div class="col-md-6">
             <div class="wiki bg-white p-4 rounded">
@@ -205,13 +221,17 @@
               </div>
             </div>
           </div>
+  
         </div>
+  
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
+  
+
 
   <!-- Day.js -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
