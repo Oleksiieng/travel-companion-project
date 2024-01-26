@@ -311,7 +311,13 @@ function hideInfoBlocks() {
     if (weatherInfoBox) weatherInfoBox.style.display = 'none';
 }
 
-
+function showWikiModal(){
+    $('#wikiModal').modal('show');
+}
 
 document.getElementById('search-form').addEventListener('submit', handleFormSubmit);
 document.getElementById('search-input').addEventListener('input', handleInput);
+document.getElementById('open-modal-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    showWikiModal();
+});
