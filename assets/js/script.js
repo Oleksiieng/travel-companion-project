@@ -189,7 +189,7 @@ function createBootstrapCards(data) {
 
     data.forEach((item, index) => {
         cardContent += `
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="card card-style">
                     <div class="card-body">
                         <h5 class="card-title">${item.name}</h5>
