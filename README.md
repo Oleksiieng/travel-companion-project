@@ -21,9 +21,9 @@ This is a group project of Pod 2 group 4.
 Project Requirements
 Use of Bootstrap: For creating a responsive interface.
 Deployment on GitHub Pages: Publishing the web application for wide access.
-Interactivity: Responding to user input (selection of city, type of activities, etc.).
-APIs:Weather API (for example, OpenWeatherMap).
-Tourist attraction API (for example, TripAdvisor API).
+Interactivity: Responding to user input (selection of city, restaurant, wikipedia information about the city and the weather).
+APIs: Weather API ( weather-by-api-ninjas).
+Tourist attraction API (Geoapify API).
 Use of Modal Windows: For displaying details about places, weather, etc.
 Client-side Storage: Storing favorite places or travel plans.
 Responsiveness: Adaptive design for various devices.
