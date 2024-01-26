@@ -90,13 +90,15 @@ map and the cards style - will bemoved to the separate file  */
     border-radius: 5px; /* Optional: Add rounded corners */
 }
 
-#open-modal-link:hover {
-    background-color: #0056b3; /* Change background color on hover */
-    border-color: #0056b3; /* Change border color on hover */
-}
+/* #open-modal-link:hover {
+    background-color: #0056b3;
+    border-color: #0056b3; 
+} */
 
 .wikipedia {
-    align-self: center;
-    margin-left: 50px;
-    
+    align-self: flex-start;
   }
+
+.wikipedia-text {
+    font-size: 13px;
+}
